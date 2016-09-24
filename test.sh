@@ -55,6 +55,7 @@ for test in $tests
 do
   in_file=./tests/$test
   real_out_file=./tests/tmp.out
+  rm $real_out_file
   expected_out_file=./tests/${test%.*}.out
   ./a.out < $in_file > $real_out_file
   if [ $? != 0 ]; then
