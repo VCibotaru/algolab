@@ -2,7 +2,7 @@ flags = [
 '-Wall',
 '-Wextra',
 '-Werror',
-'-Wc++98-compat',
+'-std=c++11',
 '-Wno-long-long',
 '-Wno-variadic-macros',
 '-std=c++11',
