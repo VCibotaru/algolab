@@ -28,10 +28,11 @@ printf "$ORANGE$1$NC"
 function EchoTestFailed {
   EchoRed "[  FAILED  ] "
   printf "Test name: $1\n"
-  printf "Expected:\n"
-  cat $3
-  printf "Got:\n"
-  cat $2
+  # printf "Expected:\n"
+  # cat $3
+  # printf "Got:\n"
+  # cat $2
+  diff $2 $3 -y 
 }
 
 # args:
