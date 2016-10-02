@@ -32,7 +32,7 @@ function EchoTestFailed {
   # cat $3
   # printf "Got:\n"
   # cat $2
-  diff $2 $3 -y 
+  diff $2 $3 -y --suppress-common-lines
 }
 
 # args:
@@ -49,14 +49,20 @@ function EchoCrash {
   printf "Test name: $1\n"
 }
 
-# get only the filenames, not full paths
-tests=`find ./tests/*.in -exec basename {} \;`
+if [ "$#" -lt "1" ]; then
+  # if no tests provided, then take all tests from ./tests folder
+  # get only the filenames, not full paths
+  tests=`find ./tests/*.in -exec basename {} \;`
+else 
+  # else take the tests provided
+  tests=$@
+fi
 
 for test in $tests
 do
   in_file=./tests/$test
   real_out_file=./tests/tmp.out
-  rm $real_out_file
+  rm -f $real_out_file
   expected_out_file=./tests/${test%.*}.out
   ./a.out < $in_file > $real_out_file
   if [ $? != 0 ]; then
