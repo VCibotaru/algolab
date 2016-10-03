@@ -1,2 +1,2 @@
 #!/bin/bash
-clang++ -Wno-c++11-extensions main.cpp -o a.out
+g++-mp-4.7 -O0 -g -Wall main.cpp -o a.out
