@@ -2,3 +2,7 @@
 *.in
 *.pyc
 *.swp
+*.txt
+*.cmake
+Makefile
+*/CMakeFiles/*
