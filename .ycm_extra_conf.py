@@ -8,6 +8,8 @@ flags = [
 '-std=c++11',
 '-isystem',
 '../BoostParts',
+'-isystem',
+'/usr/local/Cellar/cgal/4.7/include/CGAL'
 ]
 
 def FlagsForFile( filename, **kwargs ):

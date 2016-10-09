@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# usage: $0 - project name
+# usage: 
+# $0 - project name
+# $1 == -cgal - create a cgal project
 
 if [ -z $1 ]; then
     echo "Please provide a name for the project"
@@ -20,12 +22,23 @@ mkdir $test_folder
 # copy the stub main.cpp file
 cp ./stub-main.cpp $main_file_path
 
-# copy the build script
-cp ./build.sh $build_script_path
-chmod +x $build_script_path
 
 # copy the testing script
 cp ./test.sh $test_script_path
 chmod +x $test_script_path
 
-echo "`pwd`/$project_name"
+# copy the build script
+if [ $2 == "-cgal" ]; then
+  echo "make ; mv main a.out" > $build_script_path
+else
+  cp ./build.sh $build_script_path
+fi
+chmod +x $build_script_path
+
+if [ $2 == "-cgal" ]; then
+  cd $project_name
+  cgal_create_cmake_script
+  cmake CMakeLists.txt
+fi
+
+echo "`pwd`"
