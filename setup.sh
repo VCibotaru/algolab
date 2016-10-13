@@ -28,14 +28,14 @@ cp ./test.sh $test_script_path
 chmod +x $test_script_path
 
 # copy the build script
-if [ $2 == "-cgal" ]; then
+if [ "$#" -gt 1 ] && [ $2 == "-cgal" ]; then
   echo "make ; mv main a.out" > $build_script_path
 else
   cp ./build.sh $build_script_path
 fi
 chmod +x $build_script_path
 
-if [ $2 == "-cgal" ]; then
+if [ "$#" -gt 1 ] && [ $2 == "-cgal" ]; then
   cd $project_name
   cgal_create_cmake_script
   cmake CMakeLists.txt
